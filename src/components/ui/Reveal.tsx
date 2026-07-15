@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 
 type RevealProps = {
@@ -16,20 +16,15 @@ export default function Reveal({
   delay = 0,
   as = "div",
 }: RevealProps) {
-  const shouldReduceMotion = useReducedMotion();
   const MotionTag = as === "span" ? motion.span : motion.div;
 
   return (
     <MotionTag
       className={`reveal ${className}`}
-      initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+      initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
-      transition={{
-        duration: shouldReduceMotion ? 0 : 0.65,
-        ease: [0.22, 1, 0.36, 1],
-        delay: delay / 1000,
-      }}
+      transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: delay / 1000 }}
     >
       {children}
     </MotionTag>

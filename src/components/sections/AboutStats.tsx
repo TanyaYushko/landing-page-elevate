@@ -43,7 +43,7 @@ export default function AboutStats() {
                 that reflect your personality and lifestyle. From concept to
                 completion, we focus on every detail to ensure that your
                 space is not only beautiful but also functional and
-                timeless.
+                timeless.&quot;
               </p>
             </div>
             <ArrowLink href="#services" className="mt-8">
@@ -51,16 +51,16 @@ export default function AboutStats() {
             </ArrowLink>
           </Reveal>
 
-          <div className="relative aspect-[661/312] w-full overflow-hidden">
-            <Image
-              src="/images/about-collage.png"
-              alt="Collage of six interior design projects"
-              fill
-              className="object-cover"
-              sizes="(min-width: 1024px) 45vw, 90vw"
-            />
-          </div>
           <Reveal delay={120}>
+            <div className="relative aspect-[661/312] w-full overflow-hidden">
+              <Image
+                src="/images/about-collage.png"
+                alt="Collage of six interior design projects"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 45vw, 90vw"
+              />
+            </div>
             <p className="mt-3 text-[15px] tracking-[0.04em] text-fg sm:text-[16px]">
               &quot;2024 Interior Design Trends to Watch&quot;
             </p>

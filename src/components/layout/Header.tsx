@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -37,12 +36,7 @@ export default function Header() {
           </span>
         </Link>
 
-        <motion.nav
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="hidden items-center gap-8 lg:flex xl:gap-12"
-        >
+        <nav className="hidden items-center gap-8 lg:flex xl:gap-12">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.label}
@@ -54,14 +48,9 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
-        </motion.nav>
+        </nav>
 
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
-          className="hidden items-center gap-5 pr-1 lg:flex"
-        >
+        <div className="hidden items-center gap-5 pr-1 lg:flex">
           <button
             onClick={() => setLang("UA")}
             className={`text-[16px] tracking-[0.04em] transition-colors hover:text-accent ${
@@ -78,7 +67,7 @@ export default function Header() {
           >
             ENG
           </button>
-        </motion.div>
+        </div>
 
         <button
           onClick={() => setOpen((v) => !v)}

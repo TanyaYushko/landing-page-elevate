@@ -47,7 +47,7 @@ export default function Faq() {
         </Reveal>
 
         <div className="mt-10 grid grid-cols-1 gap-10 lg:mt-14 lg:grid-cols-12 lg:gap-6">
-          <div className="lg:col-span-5">
+          <Reveal className="lg:col-span-5">
             <div className="flex flex-col gap-4 sm:flex-row">
               <div className="relative aspect-[289/221] w-full overflow-hidden sm:w-[62%]">
                 <Image
@@ -68,12 +68,12 @@ export default function Faq() {
                 />
               </div>
             </div>
-            <Reveal className="mt-6">
-              <ArrowLink href="#contact">contact us</ArrowLink>
-            </Reveal>
-          </div>
+            <ArrowLink href="#contact" className="mt-6">
+              contact us
+            </ArrowLink>
+          </Reveal>
 
-          <div className="hidden lg:col-span-3 lg:block">
+          <Reveal delay={80} className="hidden lg:col-span-3 lg:block">
             <div className="relative aspect-[464/494] w-full overflow-hidden">
               <Image
                 src="/images/faq-team.jpg"
@@ -83,7 +83,7 @@ export default function Faq() {
                 sizes="30vw"
               />
             </div>
-          </div>
+          </Reveal>
 
           <Reveal delay={120} className="lg:col-span-4">
             <div className="flex flex-col gap-3">

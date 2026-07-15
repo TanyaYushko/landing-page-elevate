@@ -29,40 +29,36 @@ export default function SpaceForYou() {
         </div>
 
         <div className="mt-12 grid grid-cols-1 gap-12 lg:mt-20 lg:grid-cols-2 lg:gap-10">
-          <div>
-            <Reveal>
-              <h3 className="text-[32px] uppercase leading-[1.3] tracking-[0.06em] sm:text-[40px] lg:text-[48px]">
-                design
-              </h3>
-            </Reveal>
+          <Reveal>
+            <h3 className="text-[32px] uppercase leading-[1.3] tracking-[0.06em] sm:text-[40px] lg:text-[48px]">
+              design
+            </h3>
             <div className="relative mt-6 aspect-[771/491] w-full overflow-hidden">
               <Image
                 src="/images/space-living-room.png"
                 alt="Cozy designed living room with warm lighting"
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-700 ease-out hover:scale-105"
                 sizes="(min-width: 1024px) 45vw, 90vw"
               />
             </div>
-          </div>
+          </Reveal>
 
-          <div className="flex flex-col">
-            <Reveal delay={120}>
-              <div className="flex items-start justify-between gap-6">
-                <h3 className="text-[32px] uppercase leading-[1.3] tracking-[0.06em] sm:text-[40px] lg:text-[48px]">
-                  projects
-                </h3>
-              </div>
+          <Reveal delay={120} className="flex flex-col">
+            <div className="flex items-start justify-between gap-6">
+              <h3 className="text-[32px] uppercase leading-[1.3] tracking-[0.06em] sm:text-[40px] lg:text-[48px]">
+                projects
+              </h3>
+            </div>
 
-              <p className="mt-6 max-w-[344px] text-justify text-[15px] leading-[1.4] tracking-[0.04em] text-fg sm:text-[16px]">
-                At elevate interiors studio - we believe that every space has
-                the potential to tell a story!
-              </p>
+            <p className="mt-6 max-w-[344px] text-justify text-[15px] leading-[1.4] tracking-[0.04em] text-fg sm:text-[16px]">
+              At elevate interiors studio - we bealive that every space has
+              the potential to tell a story!
+            </p>
 
-              <ArrowLink href="#projects" className="mt-8 self-start">
-                view cataloge
-              </ArrowLink>
-            </Reveal>
+            <ArrowLink href="#projects" className="mt-8 self-start">
+              view cataloge
+            </ArrowLink>
 
             <div className="mt-10 flex items-end gap-4 sm:gap-6">
               <div className="relative aspect-[222/230] w-[160px] shrink-0 overflow-hidden sm:w-[200px] lg:w-[222px]">
@@ -93,7 +89,7 @@ export default function SpaceForYou() {
                 <span className="h-full w-px bg-fg/40" />
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </Container>
     </section>
