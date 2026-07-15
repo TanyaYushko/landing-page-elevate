@@ -31,6 +31,8 @@ const imageVariant = {
   }),
 };
 
+const MotionImage = motion(Image);
+
 export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
 
@@ -82,29 +84,34 @@ export default function Hero() {
             className="relative lg:col-start-2 lg:row-start-2 lg:row-span-2 lg:self-stretch"
           >
             <motion.div
-              animate={shouldReduceMotion ? undefined : { y: [0, -4, 0] }}
+              animate={shouldReduceMotion ? undefined : { y: [0, -6, 0, 6, 0] }}
               transition={
                 shouldReduceMotion
                   ? undefined
                   : {
-                      duration: 6,
+                      duration: 8,
                       ease: "easeInOut",
                       repeat: Infinity,
-                      repeatType: "mirror",
+                      repeatType: "loop",
                       delay: 1.15,
                     }
               }
-              whileHover={shouldReduceMotion ? undefined : { scale: 1.03 }}
-              className="relative aspect-[363/440] w-full max-w-[363px] overflow-hidden bg-[#d9d9d9] lg:h-full lg:max-w-none transition-transform duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+              className="relative"
             >
-              <Image
-                src="/images/hero-lamps.jpg"
-                alt="Brass pendant lamps hanging in a warm interior"
-                fill
-                priority
-                className="object-cover"
-                sizes="(min-width: 1024px) 363px, 90vw"
-              />
+              <motion.div
+                whileHover={shouldReduceMotion ? undefined : { scale: 1.03 }}
+                transition={shouldReduceMotion ? undefined : { duration: 0.4 }}
+                className="relative aspect-[363/440] w-full max-w-[363px] overflow-hidden bg-[#d9d9d9] lg:h-full lg:max-w-none"
+              >
+                <MotionImage
+                  src="/images/hero-lamps.jpg"
+                  alt="Brass pendant lamps hanging in a warm interior"
+                  fill
+                  priority
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 363px, 90vw"
+                />
+              </motion.div>
             </motion.div>
             <p className="mt-3 max-w-[280px] text-[15px] leading-[1.4] tracking-[0.04em] text-fg sm:text-[16px]">
               Discover the art of interior design tailored to your unique style
