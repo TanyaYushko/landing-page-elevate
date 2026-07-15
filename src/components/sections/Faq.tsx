@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ArrowLink from "@/components/ui/ArrowLink";
@@ -6,14 +9,36 @@ import AccordionItem from "@/components/ui/AccordionItem";
 import Reveal from "@/components/ui/Reveal";
 
 const QUESTIONS = [
-  "can i order only plans or visuals?",
-  "do we take money for the first visit to the facility?",
-  "is it possible to make edits and is the price changing from this?",
-  "is it possible to make a design only for several rooms?",
-  "if the square area of the room is large, will the price increase in connection with this?",
+  {
+    question: "can i order only plans or visuals?",
+    answer:
+      "Yes — you can order only plans or visuals depending on your needs. Every package is designed to stay flexible and premium. ",
+  },
+  {
+    question: "do we take money for the first visit to the facility?",
+    answer:
+      "The first consultation is included, and we discuss your vision before any fees are confirmed. Our process is transparent and client-first.",
+  },
+  {
+    question: "is it possible to make edits and is the price changing from this?",
+    answer:
+      "Minor edits are always part of the process. If revisions require significant changes, we will review the scope together and keep you informed.",
+  },
+  {
+    question: "is it possible to make a design only for several rooms?",
+    answer:
+      "Absolutely. We can design individual rooms or an entire home — each solution is curated with the same premium attention to detail.",
+  },
+  {
+    question: "if the square area of the room is large, will the price increase in connection with this?",
+    answer:
+      "Pricing reflects the complexity and scope rather than just the area. We tailor each proposal to your project size and desired finish level.",
+  },
 ];
 
 export default function Faq() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
   return (
     <section className="py-16 sm:py-20 lg:py-24">
       <Container>
@@ -62,8 +87,16 @@ export default function Faq() {
 
           <Reveal delay={120} className="lg:col-span-4">
             <div className="flex flex-col gap-3">
-              {QUESTIONS.map((q) => (
-                <AccordionItem key={q} question={q} />
+              {QUESTIONS.map((item, index) => (
+                <AccordionItem
+                  key={item.question}
+                  question={item.question}
+                  answer={item.answer}
+                  active={openIndex === index}
+                  onToggle={() =>
+                    setOpenIndex((current) => (current === index ? null : index))
+                  }
+                />
               ))}
             </div>
           </Reveal>
