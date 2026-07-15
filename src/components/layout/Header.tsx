@@ -1,5 +1,6 @@
 "use client";
 
+import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -15,6 +16,17 @@ const NAV_LINKS = [
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [lang, setLang] = useState<"UA" | "ENG">("ENG");
+  const shouldReduceMotion = useReducedMotion();
+
+  const fadeDown = shouldReduceMotion
+    ? { opacity: 1, y: 0 }
+    : { opacity: 0, y: -16 };
+
+  const fadeDownTransition = {
+    duration: 0.65,
+    delay: 0.1,
+    ease: [0.22, 1, 0.36, 1],
+  };
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-[rgba(86,86,86,0.52)] backdrop-blur-sm">
@@ -36,7 +48,12 @@ export default function Header() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-8 lg:flex xl:gap-12">
+        <motion.nav
+          initial={fadeDown}
+          animate={{ opacity: 1, y: 0 }}
+          transition={fadeDownTransition}
+          className="hidden items-center gap-8 lg:flex xl:gap-12"
+        >
           {NAV_LINKS.map((link) => (
             <Link
               key={link.label}
@@ -48,9 +65,14 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
-        </nav>
+        </motion.nav>
 
-        <div className="hidden items-center gap-5 pr-1 lg:flex">
+        <motion.div
+          initial={fadeDown}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ ...fadeDownTransition, delay: 0.16 }}
+          className="hidden items-center gap-5 pr-1 lg:flex"
+        >
           <button
             onClick={() => setLang("UA")}
             className={`text-[16px] tracking-[0.04em] transition-colors hover:text-accent ${
@@ -67,7 +89,7 @@ export default function Header() {
           >
             ENG
           </button>
-        </div>
+        </motion.div>
 
         <button
           onClick={() => setOpen((v) => !v)}

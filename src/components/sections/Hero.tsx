@@ -1,19 +1,30 @@
 "use client";
 
-"use client";
-
 import Image from "next/image";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import ArrowLink from "@/components/ui/ArrowLink";
 
 const textVariant = {
-  hidden: { opacity: 0, y: 18 },
+  hidden: { opacity: 0, y: 20 },
   visible: (delay: number) => ({
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.9,
+      duration: 0.85,
+      ease: [0.22, 1, 0.36, 1],
+      delay,
+    },
+  }),
+};
+
+const imageVariant = {
+  hidden: { opacity: 0, scale: 0.96 },
+  visible: (delay: number) => ({
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.85,
       ease: [0.22, 1, 0.36, 1],
       delay,
     },
@@ -21,33 +32,11 @@ const textVariant = {
 };
 
 export default function Hero() {
-  const pointerX = useMotionValue(0);
-  const pointerY = useMotionValue(0);
-  const x = useSpring(useTransform(pointerX, (value) => value * 16), {
-    damping: 20,
-    stiffness: 140,
-  });
-  const y = useSpring(useTransform(pointerY, (value) => value * 16), {
-    damping: 20,
-    stiffness: 140,
-  });
-
-  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    pointerX.set((event.clientX - rect.left) / rect.width - 0.5);
-    pointerY.set((event.clientY - rect.top) / rect.height - 0.5);
-  };
-
-  const handlePointerLeave = () => {
-    pointerX.set(0);
-    pointerY.set(0);
-  };
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <section
       id="top"
-      onPointerMove={handlePointerMove}
-      onPointerLeave={handlePointerLeave}
       className="relative overflow-hidden pb-16 pt-[130px] sm:pb-20 sm:pt-[150px] lg:pb-24 lg:pt-[180px]"
     >
       <Container>
@@ -55,17 +44,30 @@ export default function Hero() {
           <motion.p
             custom={0}
             variants={textVariant}
-            initial="hidden"
+            initial={shouldReduceMotion ? "visible" : "hidden"}
             animate="visible"
             className="lg:col-start-1 lg:row-start-1 whitespace-nowrap font-script text-[15vw] leading-[1.15] tracking-[0.02em] text-fg sm:text-[64px] md:text-[92px] lg:text-[110px] xl:text-[130px]"
           >
-            the <span className="font-sans font-medium uppercase">elevate</span>
+            <motion.span
+              custom={0}
+              variants={textVariant}
+              className="inline-block"
+            >
+              the
+            </motion.span>{" "}
+            <motion.span
+              custom={0.18}
+              variants={textVariant}
+              className="inline-block font-sans font-medium uppercase"
+            >
+              elevate
+            </motion.span>
           </motion.p>
 
           <motion.p
-            custom={0.12}
+            custom={0.35}
             variants={textVariant}
-            initial="hidden"
+            initial={shouldReduceMotion ? "visible" : "hidden"}
             animate="visible"
             className="lg:col-start-1 lg:row-start-2 lg:-mt-2 font-script text-[16vw] leading-[1.15] tracking-[0.02em] text-fg sm:text-[68px] md:text-[98px] lg:text-[110px] xl:text-[130px]"
           >
@@ -73,17 +75,21 @@ export default function Hero() {
           </motion.p>
 
           <motion.div
-            custom={0.24}
-            variants={textVariant}
-            initial="hidden"
-            animate="visible"
-            style={{ x, y }}
+            custom={0.45}
+            variants={imageVariant}
+            initial={shouldReduceMotion ? "visible" : "hidden"}
+            animate={shouldReduceMotion ? "visible" : "visible"}
+            whileHover={shouldReduceMotion ? undefined : { scale: 1.03 }}
             className="relative lg:col-start-2 lg:row-start-2 lg:row-span-2 lg:self-stretch"
           >
             <motion.div
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-              className="relative aspect-[363/440] w-full max-w-[363px] overflow-hidden bg-[#d9d9d9] lg:h-full lg:max-w-none"
+              animate={shouldReduceMotion ? undefined : { y: [0, -2, 0] }}
+              transition={
+                shouldReduceMotion
+                  ? undefined
+                  : { duration: 7, ease: "easeInOut", repeat: Infinity, delay: 1.15 }
+              }
+              className="relative aspect-[363/440] w-full max-w-[363px] overflow-hidden bg-[#d9d9d9] lg:h-full lg:max-w-none transition-transform duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] lg:hover:scale-[1.03]"
             >
               <Image
                 src="/images/hero-lamps.jpg"
@@ -100,9 +106,9 @@ export default function Hero() {
           </motion.div>
 
           <motion.p
-            custom={0.36}
+            custom={0.55}
             variants={textVariant}
-            initial="hidden"
+            initial={shouldReduceMotion ? "visible" : "hidden"}
             animate="visible"
             className="mt-2 lg:col-start-1 lg:row-start-3 lg:-mt-1 font-sans text-[13vw] font-medium uppercase leading-[1.15] tracking-[0.02em] text-fg sm:text-[56px] md:text-[80px] lg:text-[110px] xl:text-[130px]"
           >
@@ -110,9 +116,9 @@ export default function Hero() {
           </motion.p>
 
           <motion.div
-            custom={0.48}
+            custom={0.7}
             variants={textVariant}
-            initial="hidden"
+            initial={shouldReduceMotion ? "visible" : "hidden"}
             animate="visible"
             className="mt-8 lg:col-start-1 lg:row-start-4 lg:mt-10"
           >
