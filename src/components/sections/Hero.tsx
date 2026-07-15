@@ -82,12 +82,12 @@ export default function Hero() {
             className="relative lg:col-start-2 lg:row-start-2 lg:row-span-2 lg:self-stretch"
           >
             <motion.div
-              animate={shouldReduceMotion ? undefined : { y: [0, -2.5, 0] }}
+              animate={shouldReduceMotion ? undefined : { y: [0, -4, 0] }}
               transition={
                 shouldReduceMotion
                   ? undefined
                   : {
-                      duration: 7.5,
+                      duration: 6,
                       ease: "easeInOut",
                       repeat: Infinity,
                       repeatType: "mirror",
