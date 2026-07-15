@@ -78,18 +78,24 @@ export default function Hero() {
             custom={0.45}
             variants={imageVariant}
             initial={shouldReduceMotion ? "visible" : "hidden"}
-            animate={shouldReduceMotion ? "visible" : "visible"}
-            whileHover={shouldReduceMotion ? undefined : { scale: 1.03 }}
+            animate="visible"
             className="relative lg:col-start-2 lg:row-start-2 lg:row-span-2 lg:self-stretch"
           >
             <motion.div
-              animate={shouldReduceMotion ? undefined : { y: [0, -2, 0] }}
+              animate={shouldReduceMotion ? undefined : { y: [0, -2.5, 0] }}
               transition={
                 shouldReduceMotion
                   ? undefined
-                  : { duration: 7, ease: "easeInOut", repeat: Infinity, delay: 1.15 }
+                  : {
+                      duration: 7.5,
+                      ease: "easeInOut",
+                      repeat: Infinity,
+                      repeatType: "mirror",
+                      delay: 1.15,
+                    }
               }
-              className="relative aspect-[363/440] w-full max-w-[363px] overflow-hidden bg-[#d9d9d9] lg:h-full lg:max-w-none transition-transform duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] lg:hover:scale-[1.03]"
+              whileHover={shouldReduceMotion ? undefined : { scale: 1.03 }}
+              className="relative aspect-[363/440] w-full max-w-[363px] overflow-hidden bg-[#d9d9d9] lg:h-full lg:max-w-none transition-transform duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
             >
               <Image
                 src="/images/hero-lamps.jpg"
